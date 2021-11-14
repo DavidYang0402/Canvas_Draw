@@ -1,0 +1,55 @@
+﻿<Window x:Class="Canvas_Draw.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Canvas_Draw"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="860" Width="1300
+        ">
+    <StackPanel HorizontalAlignment="Left" Height="830" VerticalAlignment="Top" Width="1290" Margin="0,0,0,-1">
+        <Menu Height="30" HorizontalAlignment="Right" Width="1290">
+            <MenuItem FontSize="18" Header="FIle">
+                <CheckBox x:Name="MenuCheckBox" Content="ToolBarTray" IsChecked="True" Click="MenuCheckBox_Click"/>
+                <MenuItem Header="Clear All" Click="ClearAllButton_Click"/>
+                <MenuItem x:Name="SaveCanvasMenuItem" Header="Save" Click="SaveCanvasMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem FontSize="18" Header="Colors">
+                <MenuItem x:Name="menuItem" Header="BrushColor" Click="currentStrokeColor_Click" Background="{Binding Background.Color, ElementName=menuItem}"/>
+                <MenuItem Header="FillColor" Click="FillColor_Click"/>
+                <MenuItem x:Name="BackGroudColor" Header="BackGround Color" Click="BackGroudColor_Click"/>
+                <Slider x:Name="Thickness" Height="20" VerticalAlignment="Top" Width="200" FontSize="10" Maximum="20" IsSnapToTickEnabled="True" ValueChanged="StrokeThicknessSlider_ValueChanged" Value="{Binding Value, ElementName=StrokeThicknessSlider}" />
+                
+            </MenuItem>
+            <MenuItem FontSize="18" Header="Tools">
+                <MenuItem Header="Line" FontSize="18" Foreground="Black" Checked="ShapeButton_Click" Click="ShapeButton_Click"/>
+                <MenuItem Header="Rectangle" FontSize="18" Foreground="Black" Click="ShapeButton_Click"/>
+                <MenuItem Header="Ellipse" FontSize="18" Foreground="Black" Click="ShapeButton_Click"/>
+                <MenuItem Header="Polygon" FontSize="18" Foreground="Black" Click="ShapeButton_Click"/>
+                <MenuItem Header="Erase" FontSize="18" Foreground="Black" Click="EraseButton_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray x:Name="MyToolBarTray" Height="70" Background="#FF514A4A">
+            <ToolBar HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="518" Margin="0,0,-494,-57" Background="#FF61616F" BorderBrush="#FF080707">
+                <Button x:Name="StrokeColor" Content="Brush" Height="65" VerticalAlignment="Top" Width="75" Foreground="White" FontSize="18" Click="currentStrokeColor_Click"/>
+                <Slider x:Name="StrokeThicknessSlider" Height="41" VerticalAlignment="Top" Width="273" Margin="0,24,0,0" FontSize="10" Maximum="20" IsSnapToTickEnabled="True" ValueChanged="StrokeThicknessSlider_ValueChanged"/>
+                <Label x:Name="StrokeThicknessLabel" Content="{Binding Value, ElementName=StrokeThicknessSlider}" Height="41" VerticalAlignment="Top" OpacityMask="White" FontSize="18" Margin="0,18,0,0" Foreground="White" Width="32"/>
+                <Button x:Name="FillColor" Content="FillColor" Height="65" VerticalAlignment="Top" Width="92" Foreground="White" FontSize="18" Margin="5,0,0,0" Click="FillColor_Click"/>
+            </ToolBar>
+            <ToolBar HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="636" Margin="494,0,-1106,-57" Background="#FF61616F" Foreground="White">
+                <RadioButton x:Name="LineButton" Content="Line" Height="65" Width="100" VerticalAlignment="Top" FontSize="18" Foreground="White" Click="ShapeButton_Click"/>
+                <RadioButton x:Name="RectangleButton" Content="Rectangle" Height="65" Width="100" VerticalAlignment="Top" FontSize="18" Foreground="White" Click="ShapeButton_Click"/>
+                <RadioButton x:Name="EllipseButton" Content="Ellipse" Height="65" Width="100" VerticalAlignment="Top" FontSize="18" Foreground="White" Click="ShapeButton_Click"/>
+                <RadioButton x:Name="PolygonButton" Content="Polygon" Height="65" Width="100" VerticalAlignment="Top" FontSize="18" Foreground="White" Click="ShapeButton_Click"/>
+                <RadioButton x:Name="EraseButton" Content="Erase" Height="65" Width="100" VerticalAlignment="Top" FontSize="18" Foreground="White" Click="EraseButton_Click"/>
+            </ToolBar>
+            <ToolBar HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="126" Margin="1110,0,-1212,-57" Background="#FF61616F">
+                <Button x:Name="ClearAllButton" Content="Clear_All" Height="65" VerticalAlignment="Top" Width="98" FontSize="18" Foreground="White" Click="ClearAllButton_Click"/>
+            </ToolBar>
+        </ToolBarTray>
+        <Canvas x:Name="MyCanvas" Height="690" Background="#FFF9FBE7" MouseLeftButtonDown="MyCanvas_MouseLeftButtonDown" MouseMove="MyCanvas_MouseMove" MouseLeftButtonUp="MyCanvas_MouseLeftButtonUp"/>
+        <StatusBar Height="36">
+            <Label x:Name="MyLabel" Content="Label" FontSize="16"/>
+        </StatusBar>
+    </StackPanel>
+</Window>
