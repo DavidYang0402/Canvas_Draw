@@ -8,25 +8,25 @@
         Title="MainWindow" Height="860" Width="1300
         ">
     <StackPanel HorizontalAlignment="Left" Height="830" VerticalAlignment="Top" Width="1290" Margin="0,0,0,-1">
-        <Menu Height="30" HorizontalAlignment="Right" Width="1290">
-            <MenuItem FontSize="18" Header="FIle">
+        <Menu Height="25" HorizontalAlignment="Right" Width="1290">
+            <MenuItem FontSize="15" Header="File">
                 <CheckBox x:Name="MenuCheckBox" Content="ToolBarTray" IsChecked="True" Click="MenuCheckBox_Click"/>
                 <MenuItem Header="Clear All" Click="ClearAllButton_Click"/>
                 <MenuItem x:Name="SaveCanvasMenuItem" Header="Save" Click="SaveCanvasMenuItem_Click"/>
             </MenuItem>
-            <MenuItem FontSize="18" Header="Colors">
-                <MenuItem x:Name="menuItem" Header="BrushColor" Click="currentStrokeColor_Click" Background="{Binding Background.Color, ElementName=menuItem}"/>
+            <MenuItem FontSize="15" Header="Colors">
+                <MenuItem x:Name="menuItem" Header="BrushColor" Click="currentStrokeColor_Click"/>
                 <MenuItem Header="FillColor" Click="FillColor_Click"/>
                 <MenuItem x:Name="BackGroudColor" Header="BackGround Color" Click="BackGroudColor_Click"/>
                 <Slider x:Name="Thickness" Height="20" VerticalAlignment="Top" Width="200" FontSize="10" Maximum="20" IsSnapToTickEnabled="True" ValueChanged="StrokeThicknessSlider_ValueChanged" Value="{Binding Value, ElementName=StrokeThicknessSlider}" />
                 
             </MenuItem>
-            <MenuItem FontSize="18" Header="Tools">
-                <MenuItem Header="Line" FontSize="18" Foreground="Black" Checked="ShapeButton_Click" Click="ShapeButton_Click"/>
-                <MenuItem Header="Rectangle" FontSize="18" Foreground="Black" Click="ShapeButton_Click"/>
-                <MenuItem Header="Ellipse" FontSize="18" Foreground="Black" Click="ShapeButton_Click"/>
-                <MenuItem Header="Polygon" FontSize="18" Foreground="Black" Click="ShapeButton_Click"/>
-                <MenuItem Header="Erase" FontSize="18" Foreground="Black" Click="EraseButton_Click"/>
+            <MenuItem FontSize="15" Header="Tools">
+                <RadioButton Content="Line" FontSize="15" Click="ShapeButton_Click"/>
+                <RadioButton Content="Rectangle" FontSize="15" Foreground="Black" Click="ShapeButton_Click"/>
+                <RadioButton Content="Ellipse" FontSize="15" Foreground="Black" Click="ShapeButton_Click"/>
+                <RadioButton Content="Polygon" FontSize="15" Foreground="Black" Click="ShapeButton_Click"/>
+                <RadioButton Content="Erase" FontSize="15" Foreground="Black" Click="EraseButton_Click"/>
             </MenuItem>
         </Menu>
         <ToolBarTray x:Name="MyToolBarTray" Height="70" Background="#FF514A4A">
@@ -47,9 +47,31 @@
                 <Button x:Name="ClearAllButton" Content="Clear_All" Height="65" VerticalAlignment="Top" Width="98" FontSize="18" Foreground="White" Click="ClearAllButton_Click"/>
             </ToolBar>
         </ToolBarTray>
-        <Canvas x:Name="MyCanvas" Height="690" Background="#FFF9FBE7" MouseLeftButtonDown="MyCanvas_MouseLeftButtonDown" MouseMove="MyCanvas_MouseMove" MouseLeftButtonUp="MyCanvas_MouseLeftButtonUp"/>
+        <Canvas x:Name="MyCanvas" Height="696" Background="#FFF9FBE7" MouseLeftButtonDown="MyCanvas_MouseLeftButtonDown" MouseMove="MyCanvas_MouseMove" MouseLeftButtonUp="MyCanvas_MouseLeftButtonUp"/>
         <StatusBar Height="36">
             <Label x:Name="MyLabel" Content="Label" FontSize="16"/>
         </StatusBar>
+        <StackPanel.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="File">
+                    <CheckBox x:Name="MenuCheckBox1" Content="ToolBarTray" IsChecked="True" Click="MenuCheckBox1_Click"/>
+                    <MenuItem Header="Clear All" Click="ClearAllButton_Click"/>
+                    <MenuItem Header="Save" Click="SaveCanvasMenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Header="Colors">
+                    <MenuItem  Header="BrushColor" Click="currentStrokeColor_Click"/>
+                    <MenuItem Header="FillColor" Click="FillColor_Click"/>
+                    <MenuItem  Header="BackGround Color" Click="BackGroudColor_Click"/>
+                    <Slider x:Name="Thickness2" Width="200" Maximum="20" IsSnapToTickEnabled="True" ValueChanged="StrokeThicknessSlider_ValueChanged"/>
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <RadioButton Content="Line" Click="ShapeButton_Click"/>
+                    <RadioButton Content="Rectangle" Click="ShapeButton_Click"/>
+                    <RadioButton Content="Ellipse" Click="ShapeButton_Click"/>
+                    <RadioButton Content="Polygon" Click="ShapeButton_Click"/>
+                    <RadioButton Content="Erase" Click="EraseButton_Click"/>
+                </MenuItem>
+            </ContextMenu>
+        </StackPanel.ContextMenu>
     </StackPanel>
 </Window>

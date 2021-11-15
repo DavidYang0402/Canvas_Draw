@@ -97,15 +97,13 @@ namespace Canvas_Draw
                 Fill = currentFillColorBrush,
                 StrokeThickness = currentStrokeThickness,               
             };
-            Point P3 = new Point(dest.X - start.X +100, dest.Y - start.Y);
+            Point P3 = new Point((dest.X + start.X)/2 + (dest.Y - start.Y), (dest.Y + start.Y)/2 + (dest.X - start.X));
             PointCollection pointCollect = new PointCollection();
             pointCollect.Add(start);
             pointCollect.Add(dest);
             pointCollect.Add(P3);
             newPolygon.Points = pointCollect;
 
-            newPolygon.SetValue(Canvas.LeftProperty, start.X);
-            newPolygon.SetValue(Canvas.TopProperty, start.Y);
             MyCanvas.Children.Add(newPolygon);
         }//未完成
 
@@ -208,7 +206,7 @@ namespace Canvas_Draw
 
         private void ShapeButton_Click(object sender, RoutedEventArgs e)
         {
-            RadioButton rbt = sender as RadioButton;
+            var rbt = sender as RadioButton;
             currentShape = rbt.Content.ToString();
             currentAction = "Draw";
         }
@@ -221,6 +219,20 @@ namespace Canvas_Draw
         private void MenuCheckBox_Click(object sender, RoutedEventArgs e)
         {
             if (MenuCheckBox.IsChecked == true)
+            {
+                MyToolBarTray.Visibility = Visibility.Visible;
+                MyCanvas.Height -= MyToolBarTray.Height;
+            }
+            else
+            {
+                MyToolBarTray.Visibility = Visibility.Collapsed;
+                MyCanvas.Height += MyToolBarTray.Height;
+            }
+        }
+        
+        private void MenuCheckBox1_Click(object sender, RoutedEventArgs e)
+        {
+            if (MenuCheckBox1.IsChecked == true)
             {
                 MyToolBarTray.Visibility = Visibility.Visible;
                 MyCanvas.Height -= MyToolBarTray.Height;
@@ -277,7 +289,7 @@ namespace Canvas_Draw
                 png.Save(fs);
             }
         }
-
+       
         private void StrokeThicknessSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             currentStrokeThickness = Convert.ToInt32(StrokeThicknessSlider.Value);
